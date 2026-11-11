@@ -1,135 +1,277 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Me</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio cá nhân của Huỳnh Thị Huỳnh Như – sinh viên Thương mại điện tử, định hướng Kinh doanh và Digital Commerce.">
+  <title>Huỳnh Thị Huỳnh Như | Personal Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17251f;
+      --muted: #66736c;
+      --cream: #f6f5ef;
+      --paper: #fffefa;
+      --green: #244c3b;
+      --green-2: #376b53;
+      --gold: #b9955b;
+      --line: rgba(36,76,59,.14);
+      --shadow: 0 22px 60px rgba(26,45,35,.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--cream);
+      font-family: "DM Sans", sans-serif; line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    .grain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 10; opacity: .12;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+    }
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px max(6vw, calc((100vw - 1160px)/2));
+      background: rgba(246,245,239,.82); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(36,76,59,.08);
+    }
+    .brand { font-weight: 700; letter-spacing: .08em; font-size: .78rem; color: var(--green); }
+    .nav-links { display: flex; gap: 28px; font-size: .84rem; color: var(--muted); }
+    .nav-links a:hover { color: var(--green); }
+    .menu-btn { display:none; border:0; background:none; font-size:1.35rem; color:var(--green); }
+    .wrap { width: min(1120px, 88vw); margin: auto; }
+    .hero {
+      min-height: 100vh; display: grid; align-items: center; padding: 130px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before, .hero::after {
+      content:""; position:absolute; border-radius:50%; pointer-events:none; filter: blur(1px);
+    }
+    .hero::before { width:460px;height:460px;right:-100px;top:14%;background:radial-gradient(circle,rgba(185,149,91,.20),transparent 68%); }
+    .hero::after { width:520px;height:520px;left:-240px;bottom:-220px;background:radial-gradient(circle,rgba(55,107,83,.15),transparent 70%); }
+    .hero-grid { display:grid; grid-template-columns: 1.2fr .8fr; gap:7vw; align-items:center; position:relative; z-index:1; }
+    .eyebrow { color:var(--gold); text-transform:uppercase; letter-spacing:.22em; font-size:.72rem; font-weight:700; }
+    h1,h2,h3 { margin:0; line-height:1.15; }
+    h1 { font:600 clamp(3rem,6.5vw,6rem)/1.04 "Playfair Display",serif; letter-spacing:-.045em; margin:20px 0 22px; }
+    h1 span { color:var(--green-2); display:block; }
+    .lead { max-width:650px; color:var(--muted); font-size:1.04rem; }
+    .hero-actions { display:flex; gap:14px; flex-wrap:wrap; margin-top:34px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:13px 21px; border-radius:3px; font-size:.86rem; font-weight:700; transition:.3s; }
+    .btn-primary { background:var(--green); color:white; box-shadow:0 10px 25px rgba(36,76,59,.18); }
+    .btn-primary:hover { background:var(--green-2); transform:translateY(-3px); }
+    .btn-outline { border:1px solid var(--line); color:var(--green); }
+    .btn-outline:hover { border-color:var(--gold); transform:translateY(-3px); }
+    .profile-card {
+      position:relative; padding:36px; background:var(--paper); border:1px solid rgba(185,149,91,.28);
+      box-shadow:var(--shadow); min-height:430px; display:flex; flex-direction:column; justify-content:space-between;
+      animation: float 6s ease-in-out infinite;
+    }
+    .profile-card::before { content:""; position:absolute; inset:12px; border:1px solid rgba(36,76,59,.10); pointer-events:none; }
+    .monogram { font:600 7rem/1 "Playfair Display",serif; color:var(--green); letter-spacing:-.08em; }
+    .card-caption { color:var(--muted); font-size:.75rem; text-transform:uppercase; letter-spacing:.18em; }
+    .card-bottom { display:flex; justify-content:space-between; align-items:end; gap:12px; }
+    .card-bottom strong { font:600 1.55rem "Playfair Display",serif; }
+    .section { padding:110px 0; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:48px; }
+    .section-head h2 { font:600 clamp(2.2rem,4vw,3.6rem) "Playfair Display",serif; letter-spacing:-.035em; }
+    .section-head p { max-width:390px; color:var(--muted); margin:0; font-size:.92rem; }
+    .about-grid { display:grid; grid-template-columns:.75fr 1.25fr; gap:8vw; }
+    .side-note { border-left:2px solid var(--gold); padding-left:20px; color:var(--muted); font-size:.88rem; align-self:start; }
+    .about-copy { font-size:1.12rem; color:#46534c; }
+    .about-copy strong { color:var(--green); }
+    .pill-row { display:flex; flex-wrap:wrap; gap:9px; margin-top:26px; }
+    .pill { padding:8px 13px; border:1px solid var(--line); color:var(--green); border-radius:99px; font-size:.76rem; background:rgba(255,255,255,.45); }
+    .dark-section { background:var(--green); color:#f8f6ef; }
+    .dark-section .section-head p { color:rgba(255,255,255,.65); }
+    .dark-section .eyebrow { color:#d7b77f; }
+    .experience-list { border-top:1px solid rgba(255,255,255,.2); }
+    .experience { display:grid; grid-template-columns: .7fr 1.3fr; gap:50px; padding:32px 0; border-bottom:1px solid rgba(255,255,255,.2); }
+    .date { color:#d7b77f; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; }
+    .experience h3 { font:600 1.5rem "Playfair Display",serif; margin:8px 0 5px; }
+    .place { color:rgba(255,255,255,.62); font-size:.85rem; }
+    .experience ul { margin:0; padding-left:18px; color:rgba(255,255,255,.78); font-size:.91rem; }
+    .experience li { margin:7px 0; padding-left:5px; }
+    .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .skill { padding:28px; background:var(--paper); border:1px solid var(--line); transition:.35s; min-height:180px; }
+    .skill:hover { transform:translateY(-7px); box-shadow:var(--shadow); border-color:rgba(185,149,91,.5); }
+    .skill-num { color:var(--gold); font-size:.75rem; letter-spacing:.15em; }
+    .skill h3 { font:600 1.35rem "Playfair Display",serif; margin:18px 0 10px; }
+    .skill p { color:var(--muted); font-size:.86rem; margin:0; }
+    .education { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .edu-card { padding:34px; background:var(--paper); border:1px solid var(--line); }
+    .edu-card h3 { font:600 1.65rem "Playfair Display",serif; margin:15px 0 8px; }
+    .edu-card p { margin:5px 0; color:var(--muted); }
+    .contact { background:#eaece5; padding:90px 0; }
+    .contact-box { display:flex; justify-content:space-between; align-items:center; gap:35px; }
+    .contact h2 { font:600 clamp(2.4rem,5vw,4.5rem) "Playfair Display",serif; max-width:600px; }
+    .contact-details { display:grid; gap:12px; font-size:.9rem; color:var(--muted); }
+    .contact-details a:hover { color:var(--green); }
+    footer { padding:24px 6vw; display:flex; justify-content:space-between; gap:15px; color:var(--muted); font-size:.75rem; }
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @media (max-width:760px) {
+      .nav { padding:15px 6vw; }
+      .menu-btn { display:block; }
+      .nav-links { display:none; position:absolute; top:62px; left:0; right:0; padding:20px 6vw; background:var(--cream); flex-direction:column; gap:15px; border-bottom:1px solid var(--line); }
+      .nav-links.open { display:flex; }
+      .hero-grid,.about-grid,.experience,.education { grid-template-columns:1fr; }
+      .hero { padding-top:120px; }
+      .profile-card { min-height:300px; max-width:480px; }
+      .monogram { font-size:5.5rem; }
+      .section { padding:78px 0; }
+      .section-head,.contact-box { align-items:flex-start; flex-direction:column; }
+      .skills-grid { grid-template-columns:1fr; }
+      .experience { gap:18px; }
+      footer { flex-direction:column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { scroll-behavior:auto !important; animation:none !important; transition:none !important; }
+      .reveal { opacity:1; transform:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <nav class="nav">
+    <a class="brand" href="#home">HUỲNH NHƯ <span style="color:var(--gold)">/</span> PORTFOLIO</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">Giới thiệu</a><a href="#experience">Kinh nghiệm</a><a href="#skills">Năng lực</a><a href="#education">Học vấn</a><a href="#contact">Liên hệ</a>
+    </div>
+  </nav>
 
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f8fafc;
-      }
-
-      .about-me {
-        padding: 80px 20px;
-        background: linear-gradient(135deg, #f8fafc 0%, #eef6ff 100%);
-        font-family: Arial, sans-serif;
-      }
-
-      .container {
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-
-      .about-content {
-        max-width: 900px;
-      }
-
-      .eyebrow {
-        color: #0f766e;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        font-size: 12px;
-        margin-bottom: 12px;
-      }
-
-      h2 {
-        font-size: 38px;
-        line-height: 1.2;
-        color: #111827;
-        margin-bottom: 20px;
-        font-weight: 700;
-      }
-
-      p {
-        font-size: 18px;
-        line-height: 1.8;
-        color: #374151;
-        margin-bottom: 18px;
-      }
-
-      .skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin: 28px 0;
-      }
-
-      .skills span {
-        background: #ffffff;
-        border: 1px solid #dbeafe;
-        color: #1f2937;
-        padding: 10px 16px;
-        border-radius: 999px;
-        font-size: 14px;
-        font-weight: 600;
-        box-shadow: 0 4px 12px rgba(15, 118, 110, 0.08);
-      }
-
-      .btn-primary {
-        display: inline-block;
-        background: linear-gradient(135deg, #0f766e, #2563eb);
-        color: #fff;
-        padding: 14px 28px;
-        border-radius: 999px;
-        text-decoration: none;
-        font-weight: 700;
-        transition: 0.3s ease;
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 24px rgba(37, 99, 235, 0.2);
-      }
-
-      @media (max-width: 768px) {
-        h2 {
-          font-size: 28px;
-        }
-
-        p {
-          font-size: 16px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <section class="about-me">
-      <div class="container">
-        <div class="about-content">
-          <div class="eyebrow">About Me</div>
-          <h2>I build thoughtful digital experiences that feel effortless.</h2>
-
-          <p>
-            I’m a front-end developer focused on turning ideas into clean, responsive,
-            and user-friendly interfaces. I enjoy blending design clarity with technical
-            precision to create products people genuinely enjoy using.
-          </p>
-
-          <p>
-            My work brings together strong UI foundations, performance awareness, and a
-            deep interest in elegant user journeys. From concept to implementation, I
-            care about the details that make the experience feel polished and intuitive.
-          </p>
-
-          <div class="skills" aria-label="Skills">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>React</span>
-            <span>UI Design</span>
-            <span>Responsive Layout</span>
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Personal portfolio · 2026</div>
+          <h1>Huỳnh Thị <span>Huỳnh Như.</span></h1>
+          <p class="lead">Sinh viên năm 3 ngành Thương mại điện tử tại Đại học Kinh tế TP. Hồ Chí Minh (UEH), có kinh nghiệm tư vấn khách hàng, xây dựng thương hiệu cá nhân và hỗ trợ quản lý đội nhóm. Tôi quan tâm đến việc kết hợp tư duy kinh doanh với công nghệ và nền tảng số để nâng cao trải nghiệm khách hàng và hiệu quả bán hàng.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Kết nối với tôi <span>↗</span></a>
+            <a class="btn btn-outline" href="#experience">Khám phá hành trình</a>
           </div>
-
-          <a href="#contact" class="btn-primary">Let’s Connect</a>
+        </div>
+        <div class="profile-card reveal">
+          <div class="card-caption">Business · Digital · Customer experience</div>
+          <div class="monogram">HN.</div>
+          <div class="card-bottom">
+            <div><strong>Huỳnh Như</strong><br><span class="card-caption">Learning · Creating · Growing</span></div>
+            <span style="font:500 2rem 'Playfair Display';color:var(--gold)">✳</span>
+          </div>
         </div>
       </div>
     </section>
-  </body>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">01 / About me</div><h2>Giới thiệu<br>về bản thân</h2></div>
+          <p>Tôi tin rằng trải nghiệm khách hàng tốt bắt đầu từ việc thấu hiểu nhu cầu và được phát triển bằng sự phối hợp hiệu quả giữa con người, nội dung và công nghệ.</p>
+        </div>
+        <div class="about-grid reveal">
+          <div class="side-note">Định hướng phát triển<br><strong style="color:var(--green)">Kinh doanh & Thương mại số</strong></div>
+          <div>
+            <p class="about-copy">Tôi có nền tảng trải nghiệm trong lĩnh vực dịch vụ và chăm sóc khách hàng, đồng thời từng trực tiếp xây dựng thương hiệu cá nhân trên mạng xã hội. Những trải nghiệm này giúp tôi rèn luyện khả năng <strong>lắng nghe, tư vấn, giao tiếp và nắm bắt nhu cầu khách hàng</strong>.</p>
+            <p class="about-copy">Hiện tại, tôi đang phát triển kiến thức về Thương mại điện tử, Content Marketing và SEO. Tôi mong muốn ứng dụng nền tảng số để tối ưu quy trình bán hàng, xây dựng mối quan hệ lâu dài với khách hàng và đóng góp vào mục tiêu tăng trưởng của doanh nghiệp.</p>
+            <div class="pill-row"><span class="pill">Customer-centric mindset</span><span class="pill">Digital commerce</span><span class="pill">Content & SEO</span><span class="pill">Team collaboration</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark-section" id="experience">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">02 / Experience</div><h2>Hành trình<br>kinh nghiệm</h2></div>
+          <p>Mỗi vai trò là một cơ hội để tôi hiểu khách hàng hơn, cải thiện cách làm việc và phát triển tư duy kinh doanh.</p>
+        </div>
+        <div class="experience-list reveal">
+          <article class="experience">
+            <div><div class="date">06/2024 – 11/2025</div><h3>Trợ lý Trưởng phòng Kinh doanh</h3><div class="place">Phường Hòa Hưng, TP. Hồ Chí Minh</div></div>
+            <ul>
+              <li>Hỗ trợ Trưởng phòng điều phối hoạt động kinh doanh và phối hợp liên phòng ban nhằm đảm bảo tiến độ công việc.</li>
+              <li>Hỗ trợ quản lý đội nhóm trong việc tìm kiếm, tiếp cận và phát triển khách hàng tiềm năng.</li>
+              <li>Ứng dụng SEO và các nền tảng số để xây dựng nội dung, tối ưu khả năng hiển thị và tăng hiệu quả tiếp cận khách hàng.</li>
+              <li>Hỗ trợ đào tạo nhân sự về nội dung bán hàng, kỹ năng tư vấn và chăm sóc khách hàng; tham gia tối ưu quy trình bán hàng.</li>
+            </ul>
+          </article>
+          <article class="experience">
+            <div><div class="date">2019 – 2024</div><h3>Hair Stylist</h3><div class="place">Phường Cầu Ông Lãnh, TP. Hồ Chí Minh</div></div>
+            <ul>
+              <li>Tư vấn và thực hiện dịch vụ tóc theo nhu cầu của khách hàng.</li>
+              <li>Xây dựng và phát triển thương hiệu cá nhân trên Facebook, TikTok thông qua nội dung giới thiệu dịch vụ và hình ảnh kết quả thực tế.</li>
+              <li>Quản lý lịch hẹn, chăm sóc khách hàng sau dịch vụ và hỗ trợ tăng tỷ lệ khách hàng quay lại.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">03 / Core capabilities</div><h2>Năng lực &<br>kỹ năng</h2></div>
+          <p>Các kỹ năng được hình thành từ trải nghiệm thực tế và quá trình học tập, tiếp tục được trau dồi qua từng dự án.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill reveal"><div class="skill-num">01 — DIGITAL</div><h3>Content Marketing & Social Media</h3><p>Lên kế hoạch nội dung và phát triển nội dung trên các nền tảng mạng xã hội.</p></article>
+          <article class="skill reveal"><div class="skill-num">02 — SEARCH</div><h3>Tối ưu hóa SEO</h3><p>Tối ưu từ khóa sản phẩm, hình ảnh và khả năng hiển thị nội dung.</p></article>
+          <article class="skill reveal"><div class="skill-num">03 — SALES</div><h3>Tư vấn khách hàng</h3><p>Giao tiếp, tìm hiểu nhu cầu và tư vấn giải pháp phù hợp với khách hàng.</p></article>
+          <article class="skill reveal"><div class="skill-num">04 — PLANNING</div><h3>Lập kế hoạch công việc</h3><p>Sắp xếp công việc, theo dõi tiến độ và phối hợp triển khai nhiệm vụ.</p></article>
+          <article class="skill reveal"><div class="skill-num">05 — TEAMWORK</div><h3>Quản lý & làm việc nhóm</h3><p>Hỗ trợ điều phối đội nhóm, chia sẻ kiến thức và phối hợp liên phòng ban.</p></article>
+          <article class="skill reveal"><div class="skill-num">06 — CUSTOMER</div><h3>Chăm sóc khách hàng</h3><p>Quản lý lịch hẹn, chăm sóc sau dịch vụ và chú trọng trải nghiệm khách hàng.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education" style="padding-top:25px">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">04 / Education</div><h2>Học vấn &<br>phát triển</h2></div>
+          <p>Không ngừng cập nhật kiến thức để kết nối nền tảng học thuật với thực tiễn kinh doanh.</p>
+        </div>
+        <div class="education reveal">
+          <div class="edu-card"><div class="eyebrow">2024 – Hiện tại</div><h3>Đại học Kinh tế TP. Hồ Chí Minh (UEH)</h3><p>Chuyên ngành: Thương mại điện tử</p><p>Trình độ: Sinh viên năm 3</p></div>
+          <div class="edu-card"><div class="eyebrow">Personal strengths</div><h3>Dấu ấn cá nhân</h3><p>Có kinh nghiệm làm việc với nhóm khách hàng đa dạng.</p><p>Từng trực tiếp xây dựng thương hiệu cá nhân để thu hút khách hàng.</p><p>Kết hợp tư duy bán hàng và sáng tạo nội dung.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-box reveal">
+        <div><div class="eyebrow">05 / Contact</div><h2>Cùng tạo nên những giá trị tốt hơn.</h2><p style="color:var(--muted);max-width:470px">Tôi luôn sẵn sàng kết nối, học hỏi và khám phá những cơ hội phát triển trong lĩnh vực Kinh doanh và Thương mại điện tử.</p></div>
+        <div class="contact-details">
+          <a href="mailto:huynhnhuhuynh.work@gmail.com">✉ &nbsp; huynhnhuhuynh.work@gmail.com</a>
+          <a href="tel:+84853825215">☎ &nbsp; +84 853 825 215</a>
+          <span>⌖ &nbsp; TP. Hồ Chí Minh, Việt Nam</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><span>© 2026 Huỳnh Thị Huỳnh Như. All rights reserved.</span><span>Designed with intention · Built for growth</span></footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+  </script>
+</body>
 </html>
